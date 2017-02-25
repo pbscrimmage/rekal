@@ -1,0 +1,58 @@
+" Press ? for help¬            |  1 import {Component} from "@angular/core";¬
+¬                              |  2 import {NavController} from 'ionic-angular';¬
+.. (up a dir)¬                 |  3 import {AddPage} from "../add/add";¬
+/home/tarvu/work/rekal/¬       |  4  ¬
+¸ hooks/¬                      |  5 @Component({¬
+¸ node_modules/¬               |  6     templateUrl: 'tasks.html'¬
+¸ platforms/¬                  |  7 })¬
+¸ plugins/¬                    |  8 export class TasksPage {¬
+¸ resources/¬                  |  9  ¬
+¸ src/¬                        | 10     public taskList: Array<string>;¬
+¸ www/¬                        | 11  ¬
+  config.xml¬                  | 12     constructor(public nav: NavController) { }¬
+  ionic.config.json¬           | 13  ¬
+  package.json¬                | 14     onPageDidEnter() {¬
+  tsconfig.json¬               | 15         this.taskList = JSON.parse(localStorage.getItem("tasks"));¬
+  tslint.json¬                 | 16         if(!this.taskList) {¬
+~                              | 17             this.taskList = [];¬
+~                              | 18         }¬
+~                              | 19     }¬
+~                              | 20  ¬
+~                              | 21     delete(index: number) {¬
+~                              | 22         this.taskList.splice(index, 1);¬
+~                              | 23         localStorage.setItem("tasks", JSON.stringify(this.taskList));¬
+~                              | 24     }¬
+~                              | 25  ¬
+~                              | 26     add() {¬
+~                              | 27         this.nav.push(AddPage);¬
+~                              | 28     }¬
+~                              | 29  ¬
+~                              | 30 }¬
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+~                              |~
+/home/tarvu/work/rekal          src/pages/tasks/tasks.ts [+]                                                                                                                                      15,1           All
+"src/pages/tasks/tasks.ts" [Modified] 30 lines --40%--

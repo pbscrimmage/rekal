@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>//REKAL//</ion-title>
+        <ion-buttons end>
+            <button (click)="add()"><ion-icon name="add"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+ 
+<ion-content class="todos">
+    <ion-list>
+        <ion-item-sliding *ngFor="let task of taskList; let i = index">
+            <ion-item>
+                <h2>{{ task }}</h2>
+            </ion-item>
+            <ion-item-options>
+                <button danger (click)="delete(i)">
+                    <ion-icon name="trash"></ion-icon>
+                    Delete
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

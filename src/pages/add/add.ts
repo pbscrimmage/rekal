@@ -1,28 +1,37 @@
 import {Component} from "@angular/core";
 import {NavController} from 'ionic-angular';
+import {Database} from "../../providers/database";
 
 @Component({
     templateUrl: 'add.html'
 })
 export class AddPage {
- 
-    private taskList: Array<string>;
-    public taskItem: string;
- 
-    constructor(public nav: NavController) {
-        this.taskList = JSON.parse(localStorage.getItem("tasks"));
-        if(!this.taskList) {
-            this.taskList = [];
-        }
-        this.taskItem = "";
+
+    public recordDate: string;
+    public recordCategory: string;
+    public recordText: string;
+
+    constructor(public nav: NavController, private database: Database) {
+        this.recordDate = "";
+        this.recordCategory = "";
+        this.recordText = "";
     }
- 
-    save() {
-        if(this.taskItem != "") {
-            this.taskList.push(this.taskItem);
-            localStorage.setItem("tasks", JSON.stringify(this.taskList));
+
+    public create(recordDate: string, recordCategory: string, recordText: string) {
+        console.log("IN CREATE", recordText);
+        this.database.createRecord(recordDate, recordCategory, recordText).then((result) => {
             this.nav.pop();
-        }
+        }, (error) => {
+            console.log("ERROR CREATING", error.toString());
+        });
     }
- 
+
+    save() {
+        console.log("Saving", this.recordText);
+        //if(this.recordDate !== "" && this.recordCategory !== "" && this.recordText !== "") {
+            console.log("Really Saving");
+            this.create(this.recordDate, this.recordCategory, this.recordText);
+        //}
+    }
+
 }

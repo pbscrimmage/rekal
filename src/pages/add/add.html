@@ -17,11 +17,15 @@
           ></ion-datetime>
         </ion-item>
         <ion-item>
-            <ion-label floating>Record Type</ion-label>
-            <ion-input type="text" [(ngModel)]="recordType"></ion-input>
+            <ion-label>Record Category</ion-label>
+            <ion-select [(ngModel)]="recordCategory" multiple="false">
+                <ion-option>Task</ion-option>
+                <ion-option>Note</ion-option>
+                <ion-option>Expense</ion-option>
+            </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label floating>Record Text</ion-label>
+            <ion-label floating>Record Data</ion-label>
             <ion-input type="text" [(ngModel)]="recordText"></ion-input>
         </ion-item>
     </ion-list>

@@ -10,8 +10,11 @@
 <ion-content class="add">
     <ion-list>
         <ion-item>
-            <ion-label floating>Record Date</ion-label>
-            <ion-input type="text" [(ngModel)]="recordDate"></ion-input>
+          <ion-label>Date</ion-label>
+          <ion-datetime displayFormat="MMM/DD/DDD" [(ngModel)]="recordDate"
+              monthShortNames="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+              dayShortNames="Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+          ></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label floating>Record Type</ion-label>

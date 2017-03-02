@@ -12,7 +12,7 @@ export class AddPage {
     public recordText: string;
 
     constructor(public nav: NavController, private database: Database) {
-        this.recordDate = "";
+        this.recordDate = new Date().toISOString();
         this.recordCategory = "";
         this.recordText = "";
     }

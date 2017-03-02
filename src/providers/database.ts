@@ -61,4 +61,15 @@ export class Database {
             });
         });
     }
+
+    public deleteRecord(id: number) {
+        return new Promise((resolve, reject) => {
+            this.storage.executeSql("DELETE FROM records WHERE (id = ?)", [id]).then((data) => {
+                resolve(data);
+            }, (error) => {
+                console.log("ERROR on DELETE", error);
+                reject(error);
+            });
+        });
+    }
 }

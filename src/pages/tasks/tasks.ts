@@ -7,13 +7,13 @@ import {Database} from "../../providers/database";
     templateUrl: 'tasks.html'
 })
 export class TasksPage {
- 
+
     public recordList: Array<Object>;
- 
+
     constructor(private nav: NavController, private database: Database) {
         this.recordList = [];
     }
- 
+
     ionViewDidEnter() {
         this.load();
    }
@@ -23,17 +23,21 @@ export class TasksPage {
             console.log("LOAD", result);
             this.recordList = <Array<Object>> result;
         }, (error) => {
-            console.log("ERROR: ", error);
+            console.log("ERROR on GET", error);
         });
     }
- 
+
     delete(index: number) {
-        //this.recordList.splice(index, 1);
-        //localStorage.setItem("tasks", JSON.stringify(this.taskList));
+        this.database.deleteRecord(this.recordList[index]["id"]).then((result) => {
+            console.log("DELETE", result);
+            this.recordList.splice(index, 1);
+        }, (error) => {
+            console.log("ERROR on DELETE", error);
+        });
     }
- 
+
     add() {
         this.nav.push(AddPage);
     }
- 
+
 }

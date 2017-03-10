@@ -2,6 +2,7 @@
 # http://git-scm.com/docs/gitignore
 
 *~
+NOTES.txt
 *.sw[mnpcod]
 *.log
 *.tmp

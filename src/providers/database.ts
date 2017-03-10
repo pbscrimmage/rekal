@@ -20,10 +20,10 @@ export class Database {
                 this.isOpen = true;
                 this.storage.executeSql("CREATE TABLE IF NOT EXISTS records (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, category TEXT, text TEXT)", {}).then(() => {
                 }, (err) => {
-                    console.log("ERROR Creating table", err);
+                    console.log("ERROR Creating table", err.message);
                 });
             }, (err) => {
-                console.log("ERROR opening database", err);
+                console.log("ERROR opening database", err.message);
             });
         }
     }
@@ -45,7 +45,7 @@ export class Database {
                 console.log("GET RECORDS", records);
                 resolve(records);
             }, (error) => {
-                console.log("ERROR on GET", error);
+                console.log("ERROR on GET", error.message);
                 reject(error);
             });
         });
@@ -56,18 +56,28 @@ export class Database {
             this.storage.executeSql("INSERT INTO records (date, category, text) VALUES (?, ?, ?)", [date, category, text]).then((data) => {
                 resolve(data);
             }, (error) => {
-                console.log("ERROR on CREATE", error);
+                console.log("ERROR on CREATE", error.message);
                 reject(error);
             });
         });
     }
 
+    public updateRecord(date: string, category: string, text: string, id: number) {
+        return new Promise((resolve, reject) => {
+            this.storage.executeSql("UPDATE records SET date = ?, category = ?, text = ? WHERE (id = ?)", [date, category, text, id]).then((data) => {
+                resolve(data);
+            }, (error) => {
+                console.log("ERROR on UPDATE", error.message);
+                reject(error);
+            });
+        });
+    }
     public deleteRecord(id: number) {
         return new Promise((resolve, reject) => {
             this.storage.executeSql("DELETE FROM records WHERE (id = ?)", [id]).then((data) => {
                 resolve(data);
             }, (error) => {
-                console.log("ERROR on DELETE", error);
+                console.log("ERROR on DELETE", error.message);
                 reject(error);
             });
         });

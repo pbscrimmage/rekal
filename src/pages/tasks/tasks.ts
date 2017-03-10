@@ -27,7 +27,11 @@ export class TasksPage {
         });
     }
 
-    delete(index: number) {
+    public showDetail(record) {
+        this.nav.push(AddPage, {record: record});
+    }
+
+    public delete(index: number) {
         this.database.deleteRecord(this.recordList[index]["id"]).then((result) => {
             console.log("DELETE", result);
             this.recordList.splice(index, 1);

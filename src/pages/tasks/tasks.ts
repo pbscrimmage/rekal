@@ -19,9 +19,10 @@ export class TasksPage {
    }
 
     public load() {
-        this.database.getRecords().then((result) => {
-            console.log("LOAD", result);
-            this.recordList = <Array<Object>> result;
+        this.database.getRecords().then((results) => {
+            console.log("LOAD", results);
+            this.recordList = <Array<Object>> results;
+            console.log("IN GET", results[3]['title']);
         }, (error) => {
             console.log("ERROR on GET", error);
         });

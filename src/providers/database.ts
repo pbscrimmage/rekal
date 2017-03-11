@@ -12,13 +12,24 @@ export class Database {
 
     private storage: SQLite;
     private isOpen: boolean;
+    private schema: string;
+    private createQuery: string;
+    private updateQuery: string;
 
     public constructor() {
         if(!this.isOpen) {
             this.storage = new SQLite();
             this.storage.openDatabase({name: "data.db", location: "default"}).then(() => {
                 this.isOpen = true;
-                this.storage.executeSql("CREATE TABLE IF NOT EXISTS records (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, category TEXT, text TEXT)", {}).then(() => {
+                /*
+                this.storage.executeSql("ALTER TABLE records ADD title TEXT", {}).then(() => {
+                }, (err) => {
+                    console.log("ERROR adding column", err.message);
+                });
+                */
+                this.schema = "id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, category TEXT, title TEXT, text TEXT";
+
+                this.storage.executeSql("CREATE TABLE IF NOT EXISTS records ("+ this.schema +")", {}).then(() => {
                 }, (err) => {
                     console.log("ERROR Creating table", err.message);
                 });
@@ -38,6 +49,7 @@ export class Database {
                             id: data.rows.item(i).id,
                             date: data.rows.item(i).date,
                             category: data.rows.item(i).category,
+                            title: data.rows.item(i).title,
                             text: data.rows.item(i).text
                         });
                     }
@@ -51,9 +63,10 @@ export class Database {
         });
     }
  
-    public createRecord(date: string, category: string, text: string) {
+    public createRecord(date: string, category: string, title: string, text: string) {
         return new Promise((resolve, reject) => {
-            this.storage.executeSql("INSERT INTO records (date, category, text) VALUES (?, ?, ?)", [date, category, text]).then((data) => {
+            this.createQuery = "INSERT INTO records (date, category, title, text) VALUES (?, ?, ?, ?)";
+            this.storage.executeSql(this.createQuery, [date, category, title, text]).then((data) => {
                 resolve(data);
             }, (error) => {
                 console.log("ERROR on CREATE", error.message);
@@ -62,9 +75,10 @@ export class Database {
         });
     }
 
-    public updateRecord(date: string, category: string, text: string, id: number) {
+    public updateRecord(date: string, category: string, title: string, text: string, id: number) {
         return new Promise((resolve, reject) => {
-            this.storage.executeSql("UPDATE records SET date = ?, category = ?, text = ? WHERE (id = ?)", [date, category, text, id]).then((data) => {
+            this.updateQuery = "UPDATE records SET date = ?, category = ?, title = ?,text = ? WHERE (id = ?)"
+            this.storage.executeSql(this.updateQuery, [date, category, title, text, id]).then((data) => {
                 resolve(data);
             }, (error) => {
                 console.log("ERROR on UPDATE", error.message);

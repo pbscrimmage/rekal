@@ -1,8 +1,8 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>//REKAL// -- {{ title }}</ion-title>
+        <ion-title>//REKAL// -- {{ pageTitle }}</ion-title>
         <ion-buttons end>
-            <button (click)="save()"><ion-icon name="checkmark"></ion-icon></button>
+            <button ion-button large (click)="save()"><ion-icon name="checkmark"></ion-icon></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -23,6 +23,10 @@
                 <ion-option>Note</ion-option>
                 <ion-option>Expense</ion-option>
             </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Record Title</ion-label>
+            <ion-input type="text" [(ngModel)]="recordTitle"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Record Data</ion-label>

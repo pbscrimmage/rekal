@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-title>//REKAL//</ion-title>
         <ion-buttons end>
-            <button (click)="add()"><ion-icon name="add"></ion-icon></button>
+            <button large (click)="add()"><ion-icon name="add"></ion-icon></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -11,7 +11,7 @@
     <ion-list>
         <ion-item-sliding *ngFor="let record of recordList; let i = index">
             <ion-item>
-                <h2 (click)="showDetail(record)">{{ record.date.slice(0,10) }} // {{ record.category }} // {{ record.text }}</h2>
+                <h2 (click)="showDetail(record)">{{ record.date.slice(0,10) }} // {{ record.category }} // {{ record.title }}</h2>
             </ion-item>
             <ion-item-options>
                 <button danger (click)="delete(i)">

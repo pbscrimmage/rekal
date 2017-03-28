@@ -1,6 +1,6 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>//REKAL// -- {{ pageTitle }}</ion-title>
+    <ion-navbar color="dark">
+        <ion-title><h2 color="primary">//REKAL// -- {{ pageTitle }}</h2></ion-title>
         <ion-buttons end>
             <button ion-button large (click)="save()"><ion-icon name="checkmark"></ion-icon></button>
         </ion-buttons>
@@ -9,28 +9,28 @@
  
 <ion-content class="add">
     <ion-list>
-        <ion-item>
-          <ion-label>Date</ion-label>
-          <ion-datetime displayFormat="MMM/DD/DDD" [(ngModel)]="recordDate"
+        <ion-item color="dark">
+          <ion-label color="primary">Date</ion-label>
+          <ion-datetime color="primary" displayFormat="MMM/DD/DDD" [(ngModel)]="recordDate"
               monthShortNames="Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
               dayShortNames="Sun, Mon, Tue, Wed, Thu, Fri, Sat"
           ></ion-datetime>
         </ion-item>
-        <ion-item>
-            <ion-label>Record Category</ion-label>
-            <ion-select [(ngModel)]="recordCategory" multiple="false">
-                <ion-option>Task</ion-option>
-                <ion-option>Note</ion-option>
-                <ion-option>Expense</ion-option>
+        <ion-item color="dark">
+            <ion-label color="primary"><h2 color="primary">Record Category</h2></ion-label>
+            <ion-select color="dark" [(ngModel)]="recordCategory" multiple="false">
+                <ion-option color="dark">Task</ion-option>
+                <ion-option color="dark">Note</ion-option>
+                <ion-option color="dark">Expense</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item>
-            <ion-label floating>Record Title</ion-label>
-            <ion-input type="text" [(ngModel)]="recordTitle"></ion-input>
+        <ion-item color="dark">
+            <ion-label floating color="primary">Record Title</ion-label>
+            <ion-input type="text" color="primary" [(ngModel)]="recordTitle"></ion-input>
         </ion-item>
-        <ion-item>
-            <ion-label floating>Record Data</ion-label>
-            <ion-textarea name="data" rows="10" cols="50" [(ngModel)]="recordText"></ion-textarea>
+        <ion-item color="dark">
+            <ion-label floating color="primary">Record Data</ion-label>
+            <ion-textarea name="data" rows="10" cols="50" [(ngModel)]="recordText" color="primary"></ion-textarea>
         </ion-item>
     </ion-list>
 </ion-content>

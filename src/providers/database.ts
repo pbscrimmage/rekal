@@ -41,7 +41,7 @@ export class Database {
 
     public getRecords() {
         return new Promise((resolve, reject) => {
-            this.storage.executeSql("SELECT * FROM records ORDER BY date ASC", []).then((data) => {
+            this.storage.executeSql("SELECT * FROM records ORDER BY date DESC", []).then((data) => {
                 let records = [];
                 if(data.rows.length > 0) {
                     for(let i = 0; i < data.rows.length; i++) {

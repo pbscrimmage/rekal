@@ -2,6 +2,9 @@
 # http://git-scm.com/docs/gitignore
 
 *~
+**/build/*
+**/.gradle/*
+
 NOTES.txt
 *.sw[mnpcod]
 *.log

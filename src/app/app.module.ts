@@ -2,13 +2,13 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TasksPage } from '../pages/tasks/tasks';
-import { AddPage } from '../pages/add/add';
+//import { AddPage } from '../pages/add/add';
 
 @NgModule({
   declarations: [
     MyApp,
     TasksPage,
-    AddPage
+ //   AddPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -17,7 +17,7 @@ import { AddPage } from '../pages/add/add';
   entryComponents: [
     MyApp,
     TasksPage,
-    AddPage
+  //  AddPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

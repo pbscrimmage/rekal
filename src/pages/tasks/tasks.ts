@@ -24,11 +24,11 @@ export class TasksPage {
         this.file.checkFile(this.file.applicationStorageDirectory + "/databases/", 'data.db')
             .then ( (success) => {
                 this.file.copyFile(this.file.applicationStorageDirectory + "/databases/",
-                                   'data.db', this.file.externalRootDirectory, 'data.db')
+                                   'data.db', this.file.externalApplicationStorageDirectory, 'data.db')
                     .then( (success) => {
                         console.log("[+] OK -- successfully copied database");
                     }, (err) => {
-                        console.log("[!] ERROR copying database " + err);
+                        console.log("[!] ERROR copying database " + err.message);
                     });
 
             }, (err) => {
